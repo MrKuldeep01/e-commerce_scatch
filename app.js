@@ -1,6 +1,6 @@
 import express from "express";
 const app = express();
-import { portNum } from "./config/envConfig.js";
+import { node_env, portNum } from "./config/envConfig.js";
 import cookieParser from "cookie-parser";
 import path from "path";
 import db from "./config/dbConnection.js";
@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 import ownersRouter from "./routes/ownersRouter.js";
 import productsRouter from "./routes/productsRouter.js";
 import usersRouter from "./routes/usersRouter.js";
-
+console.log(node_env);
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.use(express.json());
