@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-import { dbUri } from "../config/envConfig";
-
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -14,18 +12,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
     },
-    isAdmin: {
-      type: Boolean,
-      default: false,
-    },
-    cart: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "post",
-        addingTime: Date.now(),
-      },
-    ],
-    orders: [
+    products: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "post",
