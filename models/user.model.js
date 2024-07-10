@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-import { dbUri } from "../config/envConfig";
-
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -10,6 +8,7 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
+      unique:true,
     },
     password: {
       type: String,
@@ -32,7 +31,10 @@ const userSchema = new mongoose.Schema(
         addingTime: Date.now(),
       },
     ],
-    contactNum: Number,
+    contactNum:{
+      type: Number,
+      unique:true,
+    } ,
     image: {
         type:String,
         default:'',

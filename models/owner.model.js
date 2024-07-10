@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const userSchema = new mongoose.Schema(
+const ownerSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
+      unique:true,
     },
     password: {
       type: String,
@@ -15,11 +16,14 @@ const userSchema = new mongoose.Schema(
     products: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "post",
+        ref: "product",
         addingTime: Date.now(),
       },
     ],
-    contactNum: Number,
+    contactNum: {
+      type: Number,
+      unique: true,
+    },
     image: {
         type:String,
         default:'',
@@ -28,4 +32,4 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("user", userSchema);
+export default mongoose.model("owner", ownerSchema);

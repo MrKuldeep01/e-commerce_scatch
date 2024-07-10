@@ -10,15 +10,17 @@ route.get("/", (req, res) => {
 if (node_env === "developement") {
   route.post("/create", async (req, res) => {
     const owners = await ownerModel.find();
-    if (owners.lenght > 0) {
-      res.status(504).send("service not available! Owner is already exist");
+    if (owners.length > 0) {
+      res.status(503).send("service not available! Owner is already exist");
     } else {
         const {name,email,password} = req.body;
         const owner = await ownerModel.create({name,email,password})
         res.status(201).send(owner)
-    //   res.send("welcome, aagA aap?");
+    //   res.send("welcome, aagA aap?");  
     }
   });
+}else{
+console.log("service not available! Owner is already exist");
 }
 
 export default route;
